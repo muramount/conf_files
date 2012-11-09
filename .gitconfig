@@ -1,0 +1,22 @@
+[user]
+  name = murayama
+  email = murayama@avelio.co.jp
+[color]
+  ui = true
+  branch = auto
+  diff   = auto
+  status = auto
+  branch = auto
+  grep   = auto
+[alias]
+  br = branch
+  ch = checkout
+  st = status
+  co = commit
+  fe = fetch
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+[core]
+	quotepath = false
+	whitespace = cr-at-eol
+[redmine]
+	apiKey = 3135dbfdcd86ba0b3584dabefdb9ab772214b611

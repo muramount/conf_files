@@ -1,0 +1,2 @@
+#tab補間 大文字小文字区別なし
+set completion-ignore-case on
