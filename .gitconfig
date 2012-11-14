@@ -14,7 +14,8 @@
   st = status
   co = commit
   fe = fetch
-  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  gr = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  difff = diff --word-diff
 [core]
 	quotepath = false
 	whitespace = cr-at-eol
