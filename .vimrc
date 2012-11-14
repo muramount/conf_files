@@ -49,6 +49,8 @@ function! s:php_detect_settings()
 endfunction
 
 "カラー指定
+highlight CursorLine cterm=none ctermbg=black "カーソル行ハイライト色設定
+highlight CursorColumn ctermbg=none           "カーソル列ハイライトなし
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 
 "全角スペースを可視化

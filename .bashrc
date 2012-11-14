@@ -8,7 +8,9 @@ fi
 # User specific aliases and functions
 
 alias la='ls -la'
-alias castoer='ssh murayama@192.168.128.150'
+alias vi='vim'
+
+alias castor='ssh murayama@192.168.128.150'
 alias europa='ssh murayama@192.168.128.133'
 alias ganymede='ssh murayama@192.168.128.162'
 alias mintaka='ssh murayama@192.168.128.115'
