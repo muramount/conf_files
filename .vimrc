@@ -26,6 +26,7 @@ set showtabline=2               "タブは常に表示
 set whichwrap=b,s,h,l,<,>,[,]   "行末から次の行へ移動できるように
 set confirm                     "変更後終了時エラーではなく確認を求める
 set ambiwidth=double            "□とか○の文字があってもカーソル位置がずれないようにする
+set backspace=indent,eol,start  "バックスペースを有効
 
 "バックアップ設定
 set backup
@@ -54,8 +55,42 @@ highlight CursorColumn ctermbg=none           "カーソル列ハイライトな
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 
 "全角スペースを可視化
-au BufNewFile,BufRead * match ZenkakuSpace /　/
+"au BufNewFile,BufRead * match ZenkakuSpace /　/
+" 行末の空白文字を可視化
+highlight WhitespaceEOL cterm=underline ctermbg=red guibg=#FF0000
+au BufWinEnter * let w:m1 = matchadd("WhitespaceEOL", ' +$')
+au WinEnter * let w:m1 = matchadd("WhitespaceEOL", ' +$')
+
+" 行頭のTAB文字を可視化
+highlight TabString ctermbg=red guibg=red
+au BufWinEnter * let w:m2 = matchadd("TabString", '^\t+')
+au WinEnter * let w:m2 = matchadd("TabString", '^\t+')
+
+" 全角スペースの表示
+highlight ZenkakuSpace cterm=underline ctermbg=red guibg=#666666
+au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
+
+"キーマップ 
+"挿入モードで移動
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+"括弧 引用符をセット入力時戻る
+inoremap {} {}<LEFT>
+inoremap [] []<LEFT>
+inoremap () ()<LEFT>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+inoremap <> <><LEFT>
+
+"バックスペースが無反応 or DELETE 状態になっている場合
+"noremap   
+"noremap!  
+"noremap 
+"noremap! 
 
 "ctag設定
 "set tags=/var/www/html/murayama/tags
-
