@@ -5,7 +5,7 @@ syntax on
 
 set autoindent                  "オートインクリメント
 set number                      "行番号表示
-set expandtab                   "タブの代わりに半角スペース
+"set expandtab                   "タブの代わりに半角スペース
 set tabstop=4                   "タブ画面上の見た目
 set shiftwidth=4                "シフト移動幅
 set ignorecase                  "大文字/小文字を区別しない
@@ -27,6 +27,8 @@ set whichwrap=b,s,h,l,<,>,[,]   "行末から次の行へ移動できるよう�
 set confirm                     "変更後終了時エラーではなく確認を求める
 set ambiwidth=double            "□とか○の文字があってもカーソル位置がずれないようにする
 set backspace=indent,eol,start  "バックスペースを有効
+set list
+set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 
 "バックアップ設定
 set backup
@@ -40,6 +42,7 @@ set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 
 "==autocmd filetype detect== {{{
 autocmd BufRead,BufNewFile *.thtml call s:php_detect_settings() "thtmlをphpファイルとして認識
+autocmd BufRead,BufNewFile *.html call s:php_detect_settings() "thtmlをphpファイルとして認識
 autocmd BufRead,BufNewFile *.ctp setfiletype php "ctpをphpファイルとして認識
 autocmd BufRead,BufNewFile *.tpl setfiletype php "tplをphpファイルとして認識
 autocmd BufRead,BufNewFile *.sp setfiletype php "spをphpファイルとして認識
@@ -55,7 +58,7 @@ highlight CursorColumn ctermbg=none           "カーソル列ハイライトな
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 
 "全角スペースを可視化
-"au BufNewFile,BufRead * match ZenkakuSpace /　/
+au BufNewFile,BufRead * match ZenkakuSpace /　/
 " 行末の空白文字を可視化
 highlight WhitespaceEOL cterm=underline ctermbg=red guibg=#FF0000
 au BufWinEnter * let w:m1 = matchadd("WhitespaceEOL", ' +$')
@@ -71,12 +74,14 @@ highlight ZenkakuSpace cterm=underline ctermbg=red guibg=#666666
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 au WinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
 
-"キーマップ 
+"キーマップ
 "挿入モードで移動
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 
 "括弧 引用符をセット入力時戻る
 inoremap {} {}<LEFT>
@@ -92,5 +97,14 @@ inoremap <> <><LEFT>
 "noremap 
 "noremap! 
 
+" ファイル全般に設定
+augroup General
+ autocmd!
+ " 設定の保存と復元
+ autocmd BufWinLeave * silent mkview
+ autocmd BufWinEnter * silent loadview
+augroup END
+
+
 "ctag設定
-"set tags=/var/www/html/murayama/tags
+set tags=/usr/local/develop/murayama/site/tags
